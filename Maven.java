@@ -86,6 +86,11 @@ class Maven implements AutoCloseable {
                 String filename = matcher.group(1).substring(0, matcher.group(1).length() - 1);
                 urls.add(new File(release, filename));
             }
+
+            if (urls.isEmpty()) {
+                throw new IllegalArgumentException("No files found for " + release);
+            }
+
             return urls;
         });
     }
